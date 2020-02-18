@@ -18,7 +18,7 @@ source .bashrc
 
 #Installation basique
 sudo apt-get install net-tools
-sudo apt-get install ssh
+sudo apt-get install openssh-server
 
 #Modification droit
 sudo chmod o+w /etc/sudoers
