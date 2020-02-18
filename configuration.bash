@@ -16,6 +16,10 @@ sudo echo "alias install='sudo apt-get install'" >> .bashrc
 
 source .bashrc
 
+#Installation basique
+sudo apt-get install net-tools
+sudo apt-get install ssh
+
 #Modification droit
 sudo chmod o+w /etc/sudoers
 sudo echo "loic ALL=NOPASSWD: ALL" >> /etc/sudoers
