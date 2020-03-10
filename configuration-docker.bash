@@ -16,13 +16,13 @@ sudo rm -fr aws/
 
 #mise en place environnement
 sudo echo "alias update='sudo apt-get update'" >> /home/ubuntu/.bashrc
-sudo echo "alias upgrade='sudo apt-get upgrade'" >> ./home/ubuntu/.bashrc
+sudo echo "alias upgrade='sudo apt-get upgrade'" >> /home/ubuntu/.bashrc
 sudo echo "alias dc='sudo docker-compose'" >> /home/ubuntu/.bashrc
 sudo echo "alias install='sudo apt-get install'" >> /home/ubuntu/.bashrc
 source /home/ubuntu/.bashrc
 sudo wget https://raw.githubusercontent.com/zaracky/OCR_P10/master/crontab.txt
 sudo mv crontab.txt crontab
-crontab crontab
+crontab -u ubuntu crontab
 sudo rm crontab 
 
 #environnement docker (1)
@@ -75,10 +75,3 @@ sudo wget  https://esparonloic.s3.eu-west-3.amazonaws.com/amazon-s3-and-cloudfro
 sudo tar xvf amazon-s3-and-cloudfront.tar.xz 
 sudo rm amazon-s3-and-cloudfront.tar.xz 
 sudo docker-compose up -d 
-
-#alias
-cd ~
-sudo echo "alias update='sudo apt-get update'" >> .bashrc
-sudo echo "alias upgrade='sudo apt-get upgrade'" >> .bashrc
-sudo echo "alias dc='sudo docker-compose'" >> .bashrc
-sudo echo "alias install='sudo apt-get install'" >> .bashrc
