@@ -13,30 +13,57 @@ sudo unzip awscliv2.zip
 sudo ./aws/install
 sudo rm awscliv2.zip
 sudo rm -fr aws/
-
-
+sudo echo "alias update='sudo apt-get update'" >> .bashrc
+sudo echo "alias upgrade='sudo apt-get upgrade'" >> .bashrc
+sudo echo "alias dc='sudo docker-compose'" >> .bashrc
+sudo echo "alias install='sudo apt-get install'" >> .bashrc
+source .bashrc
 
 
 #environnement docker (1)
+cd /opt
 mkdir docker-compose
 cd docker-compose
 mkdir docker
 mkdir docker/sources
-sudo wget https://esparonloic.s3.eu-west-3.amazonaws.com/docker-compose.yml
 
-#Creation du fichier env
-aws secretsmanager get-secret-value --secret-id DB_USER | grep -i "SecretString" > credentials.env
-sed -i 's/\"SecretString": "/\d10/' credentials.env
-sed -i 's/\\n/\d10/' credentials.env
-sed -i 's/\\n/\d10/' credentials.env
-sed -i 's/\\n/\d10/' credentials.env
-sed -i 's/\\n/\d10/' credentials.env
-sed -i 's/\",/\d10/' credentials.env
+#Verification fichier docker-compose
+if [ -e /opt/docker-compose/docker-compose.yml ]
+then
+   echo "docker-compose présent"
+else
+   sudo wget https://raw.githubusercontent.com/zaracky/OCR_P10/master/docker-compose.yml
+
+fi
+
+
+#Creation/verification du fichier env
+
+if [ -e /opt/docker-compose/credentials.env ]
+then
+   echo "credentials présent"
+else
+   aws secretsmanager get-secret-value --secret-id DB_USER | grep -i "SecretString" > credentials.env
+   sed -i 's/\"SecretString": "/\d10/' credentials.env
+   sed -i 's/\\n/\d10/' credentials.env
+   sed -i 's/\\n/\d10/' credentials.env
+   sed -i 's/\\n/\d10/' credentials.env
+   sed -i 's/\\n/\d10/' credentials.env
+   sed -i 's/\",/\d10/' credentials.env
+
+fi
 
 #environnement docker (2)
-#sudo wget https://esparonloic.s3.eu-west-3.amazonaws.com/credentials.env
 cd docker 
-sudo wget https://esparonloic.s3.eu-west-3.amazonaws.com/Dockerfile
+
+if [ -e /opt/docker-compose/Dockerfile]
+then
+   echo "Dockerfile présent"
+else
+   sudo wget https://esparonloic.s3.eu-west-3.amazonaws.com/Dockerfile
+
+fi
+
 cd sources
 sudo wget  https://esparonloic.s3.eu-west-3.amazonaws.com/amazon-s3-and-cloudfront.tar.xz
 sudo tar xvf amazon-s3-and-cloudfront.tar.xz 
