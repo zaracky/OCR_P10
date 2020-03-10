@@ -21,5 +21,4 @@
 # For more information see the manual pages of crontab(5) and cron(8)
 # 
 # m h  dom mon dow   command
-@reboot  sudo wget https://raw.githubusercontent.com/zaracky/OCR_P10/master/configuration-docker.bash | sudo bash configuration-docker.bash | sudo rm configuration-docker.bash
-
+@reboot sudo wget https://raw.githubusercontent.com/zaracky/OCR_P10/master/configuration-docker.bash && sudo bash /home/ubuntu/configuration-docker.bash && sudo rm configuration-docker.bash
