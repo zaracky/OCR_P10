@@ -3,6 +3,7 @@
 #installation docker compose +aws cli
 
 sudo apt-get update && sudo apt-get install -y strongswan
+sudo apt-get install -y python unzip
 sudo curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 sudo unzip awscliv2.zip
 sudo ./aws/install
