@@ -75,3 +75,4 @@ sudo wget  https://esparonloic.s3.eu-west-3.amazonaws.com/amazon-s3-and-cloudfro
 sudo tar xvf amazon-s3-and-cloudfront.tar.xz 
 sudo rm amazon-s3-and-cloudfront.tar.xz 
 sudo docker-compose up -d 
+sudo docker exec -it docker-compose_wordpress_1 chown www-data:www-data /var/www/html/wp-content
